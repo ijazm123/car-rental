@@ -38,7 +38,7 @@ RUN apt-get install -y \
 RUN apt-get install apache2 libapache2-mod-php7.0 -y
 RUN apt-get install mariadb-common mariadb-server mariadb-client -y
 ENV MYSQL_ROOT_PASSWORD=linux
-CMD mysql start
+CMD service mysql start && tail -F /var/log/mysql/error.log
 ENV MYSQL_DATABASE=carrental
 RUN rm -rf /var/www/html/index.html
 ADD .  /var/www/html/carrental
